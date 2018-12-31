@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { Badge, Button, Card, CardBody, CardHeader, Col, Form, FormGroup, Label, Input, FormText, CardFooter, Row, Table, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-import {withRouter} from 'react-router';
-
-import DoctorsApi from './DoctorsApi';
+import { Button, Card, CardBody, CardHeader, Col, FormGroup, Label, Input, Row } from 'reactstrap';
+import DoctorsApi from '../../services/DoctorsApi';
 
 class EditDoctor extends Component {
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Card, CardBody, CardHeader, Col, Row, Table } from 'reactstrap';
-import DoctorsApi from './DoctorsApi';
+import DoctorsApi from '../../services/DoctorsApi';
 
 class Doctor extends Component {
 

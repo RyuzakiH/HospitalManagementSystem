@@ -4,35 +4,35 @@ class PatientsApi {
 
 
     static getPatients = (callback) => {
-        Axios.get('https://localhost:44350/api/patients')
+        Axios.get('api/patients')
             .then(res => callback(res.data))
             .catch(PatientsApi.errorHandler);
     }
 
 
     static getPatient = (id, callback) => {
-        Axios.get('https://localhost:44350/api/patients/' + id)
+        Axios.get('api/patients/' + id)
             .then(res => callback(res.data))
             .catch(PatientsApi.errorHandler);
     }
 
 
     static admitPatient = (id, callback) => {
-        Axios.get('https://localhost:44350/api/patients/' + id + '/admit')
+        Axios.get('api/patients/' + id + '/admit')
             .then(res => callback(res.data))
             .catch(PatientsApi.errorHandler);
     }
 
 
     static dischargePatient = (id, callback) => {
-        Axios.get('https://localhost:44350/api/patients/' + id + '/discharge')
+        Axios.get('api/patients/' + id + '/discharge')
             .then(res => callback(res.data))
             .catch(PatientsApi.errorHandler);
     }
 
 
     static addPatient = (patient, callback) => {
-        Axios.post('https://localhost:44350/api/patients', patient)
+        Axios.post('api/patients', patient)
             .then(() => PatientsApi.getPatients(callback))
             .catch(PatientsApi.errorHandler);
     }
@@ -41,14 +41,14 @@ class PatientsApi {
     static editPatient = (patient, callback) => {
         let id = patient.id;
         delete patient.id;
-        Axios.put('https://localhost:44350/api/patients/' + id, patient)
+        Axios.put('api/patients/' + id, patient)
             .then(() => PatientsApi.getPatients(callback))
             .catch(PatientsApi.errorHandler);
     }
 
 
     static deletePatient = (id, callback) => {
-        Axios.delete('https://localhost:44350/api/patients/' + id)
+        Axios.delete('api/patients/' + id)
             .then(() => PatientsApi.getPatients(callback))
             .catch(PatientsApi.errorHandler);
     }

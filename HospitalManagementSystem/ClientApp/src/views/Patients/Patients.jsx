@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Badge, Button, Card, CardBody, CardHeader, Col, Row, Table, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Button, Card, CardBody, CardHeader, Col, Row, Table } from 'reactstrap';
 
 import patientsTemplate from './PatientsTemplate';
-import PatientsApi from './PatientsApi';
+import PatientsApi from '../../services/PatientsApi';
 import utils from '../../utils';
 import DeleteModal from './DeleteModal';
 
@@ -51,6 +51,10 @@ class Patients extends Component {
     }
 
     componentDidMount() {
+        var user = JSON.parse(utils.getCookie("user"));
+        if (user.role !== 'doctor' && user.role !== 'nurse' && user.role !== 'admin')
+            this.props.history.push('/');
+
         document.title = "Patients";
         this.updatePatientsHandler();
     }

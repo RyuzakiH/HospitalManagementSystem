@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Badge, Button, Card, CardBody, CardHeader, Col, Row, Table, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Button, Card, CardBody, CardHeader, Col, Row, Table } from 'reactstrap';
 
 import DeleteModal from './DeleteModal';
-import DoctorsApi from './DoctorsApi';
+import DoctorsApi from '../../services/DoctorsApi';
 
 function DoctorRow(props) {
     const doctor = props.doctor

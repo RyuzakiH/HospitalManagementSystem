@@ -1,46 +1,67 @@
 import React, { Component } from 'react';
 import { Card, CardBody, CardHeader, Col, Row, Table } from 'reactstrap';
 
-import usersData from './UsersData'
+import UsersApi from '../../services/UsersApi';
 
 class User extends Component {
 
-  render() {
+    constructor() {
+        super();
+        this.state = { user: {} };
+        this.getUserHandler = this.getUserHandler.bind(this);
+    }
 
-    const user = usersData.find( user => user.id.toString() === this.props.match.params.id)
+    componentDidMount() {
+        document.title = "Users";
+        this.getUserHandler(this.props.match.params.id);
+    }
 
-    const userDetails = user ? Object.entries(user) : [['id', (<span><i className="text-muted icon-ban"></i> Not found</span>)]]
+    getUserHandler = (id) => UsersApi.getUser(id, user => this.setState({ user: user }));
 
-    return (
-      <div className="animated fadeIn">
-        <Row>
-          <Col lg={6}>
-            <Card>
-              <CardHeader>
-                <strong><i className="icon-info pr-1"></i>User id: {this.props.match.params.id}</strong>
-              </CardHeader>
-              <CardBody>
-                  <Table responsive striped hover>
-                    <tbody>
-                      {
-                        userDetails.map(([key, value]) => {
-                          return (
-                            <tr key={key}>
-                              <td>{`${key}:`}</td>
-                              <td><strong>{value}</strong></td>
-                            </tr>
-                          )
-                        })
-                      }
-                    </tbody>
-                  </Table>
-              </CardBody>
-            </Card>
-          </Col>
-        </Row>
-      </div>
-    )
-  }
+
+
+    render() {
+
+        return (
+            <div className="animated fadeIn">
+                <Row>
+                    <Col lg={6}>
+                        <Card>
+                            <CardHeader>
+                                <strong><i className="icon-info pr-1"></i>User id: {this.props.match.params.id}</strong>
+                            </CardHeader>
+                            <CardBody>
+                                <Table responsive striped hover>
+                                    <tbody>
+                                        <tr>
+                                            <td>{`ID:`}</td>
+                                            <td><strong>{this.state.user.userId}</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td>{`Username:`}</td>
+                                            <td><strong>{this.state.user.username}</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td>{`Password:`}</td>
+                                            <td><strong>{this.state.user.password}</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td>{`Role:`}</td>
+                                            <td><strong>{this.state.user.role}</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td>{`Private ID:`}</td>
+                                            <td><strong>{this.state.user.privateId}</strong></td>
+                                        </tr>
+                                    </tbody>
+                                </Table>
+                            </CardBody>
+                        </Card>
+                    </Col>
+                </Row>
+            </div>
+        )
+    }
 }
 
 export default User;

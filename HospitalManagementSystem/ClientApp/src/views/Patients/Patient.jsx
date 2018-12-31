@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Card, CardBody, CardHeader, Col, Row, Table } from 'reactstrap';
-import PatientsApi from './PatientsApi';
+import PatientsApi from '../../services/PatientsApi';
 import utils from '../../utils'
 import patientsTemplate from './PatientsTemplate';
 

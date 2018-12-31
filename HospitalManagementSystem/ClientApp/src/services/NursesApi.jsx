@@ -4,21 +4,21 @@ class NursesApi {
 
 
     static getNurses = (callback) => {
-        Axios.get('https://localhost:44350/api/nurses')
+        Axios.get('api/nurses')
             .then(res => callback(res.data))
             .catch(NursesApi.errorHandler);
     }
 
 
     static getNurse = (id, callback) => {
-        Axios.get('https://localhost:44350/api/nurses/' + id)
+        Axios.get('api/nurses/' + id)
             .then(res => callback(res.data))
             .catch(NursesApi.errorHandler);
     }
 
 
     static addNurse = (patient, callback) => {
-        Axios.post('https://localhost:44350/api/nurses', patient)
+        Axios.post('api/nurses', patient)
             .then(() => NursesApi.getPatients(callback))
             .catch(NursesApi.errorHandler);
     }
@@ -27,14 +27,14 @@ class NursesApi {
     static editNurse = (patient, callback) => {
         let id = patient.id;
         delete patient.id;
-        Axios.put('https://localhost:44350/api/nurses/' + id, patient)
+        Axios.put('api/nurses/' + id, patient)
             .then(() => NursesApi.getPatients(callback))
             .catch(NursesApi.errorHandler);
     }
 
 
     static deleteNurse = (id, callback) => {
-        Axios.delete('https://localhost:44350/api/nurses/' + id)
+        Axios.delete('api/nurses/' + id)
             .then(() => NursesApi.getPatients(callback))
             .catch(NursesApi.errorHandler);
     }
